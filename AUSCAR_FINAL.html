@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="AUSCAR — Académie d'Utilité Sociale pour la Connaissance, l'Autonomie et la Résilience. Savoir agir en 72 heures.">
+<meta name="robots" content="noindex">
+<title>AUSCAR — Savoir agir en 72 heures</title>
+<style>
+  :root {
+    --bg: #ffffff; --bg-2: #f6f6f6; --fg: #111111; --muted: #6b6b6b;
+    --red: #c8102e; --line: #e5e5e5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6; font-size: 17px; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* NAV */
+  .topnav {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
+  }
+  .nav-wrap {
+    max-width: 720px; margin: 0 auto; padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .nav-brand {
+    color: var(--fg); text-decoration: none; font-weight: 800;
+    letter-spacing: 0.06em; font-size: 15px; flex-shrink: 0;
+  }
+  .nav-brand .red { color: var(--red); }
+  .nav-links { display: flex; gap: 22px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 13px;
+    letter-spacing: 0.02em; transition: color 0.15s; font-weight: 500;
+  }
+  .nav-links a:hover { color: var(--red); }
+  .nav-links button {
+    background: var(--fg); color: #fff; border: none; padding: 8px 14px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase;
+    border-radius: 2px; cursor: pointer; transition: background 0.15s;
+    font-family: inherit;
+  }
+  .nav-links button:hover { background: var(--red); }
+
+  /* HERO */
+  header.hero {
+    padding: 90px 0 70px; border-bottom: 1px solid var(--line); text-align: left;
+  }
+  .badge {
+    display: inline-block; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--red); padding: 0; margin-bottom: 28px; font-weight: 700;
+  }
+  h1 { font-size: 60px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.0; margin-bottom: 24px; }
+  h1 .dot { color: var(--red); }
+  .subtitle { font-size: 22px; color: var(--muted); max-width: 580px; margin: 0 0 36px; font-weight: 400; line-height: 1.4; }
+  .promise { font-size: 12px; color: var(--fg); letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; padding-top: 22px; border-top: 2px solid var(--fg); display: inline-block; }
+  .tagline {
+    color: var(--fg); font-size: 19px; line-height: 1.5;
+    border-left: 2px solid var(--red); padding-left: 20px;
+    margin: 44px 0 0; max-width: 600px; text-align: left; font-style: italic;
+  }
+
+  /* RESOURCES */
+  .resources { padding: 50px 0; border-bottom: 1px solid var(--line); }
+  .res-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .res-card {
+    display: block; background: var(--bg-2); border: 1px solid var(--line);
+    border-radius: 4px; padding: 26px 24px; text-decoration: none; color: var(--fg);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .res-card:hover { border-color: var(--red); transform: translateY(-2px); }
+  .res-icon { font-size: 22px; margin-bottom: 14px; line-height: 1; opacity: 0.85; }
+  .res-title { font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+  .res-desc { color: var(--muted); font-size: 14px; line-height: 1.55; margin-bottom: 16px; }
+  .res-cta { color: var(--red); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 70px 0 50px; border-bottom: 1px solid var(--line); }
+  h2 { font-size: 34px; font-weight: 800; margin-bottom: 14px; letter-spacing: -0.02em; line-height: 1.15; }
+  h2 .num { color: var(--red); font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 14px; margin-right: 16px; vertical-align: middle; font-weight: 600; letter-spacing: 0.05em; }
+  .section-intro { color: var(--muted); font-size: 17px; margin-bottom: 32px; max-width: 620px; line-height: 1.55; }
+  h3 { font-size: 21px; font-weight: 700; margin: 32px 0 10px; color: var(--fg); letter-spacing: -0.01em; }
+  h4 { font-size: 12px; font-weight: 700; margin: 28px 0 12px; color: var(--red); letter-spacing: 0.14em; text-transform: uppercase; }
+  p { margin-bottom: 16px; color: var(--fg); }
+
+  /* RULE CARDS */
+  .rule-card {
+    background: var(--bg-2); border-left: 3px solid var(--red);
+    padding: 22px 26px; margin: 18px 0; line-height: 1.6;
+  }
+  .rule-card strong { color: var(--red); display: block; margin-bottom: 10px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; }
+
+  /* BREATH BOX */
+  .breath-box {
+    background: var(--fg); color: #fff; padding: 36px 24px; text-align: center;
+    margin: 24px 0;
+  }
+  .breath-box .seq { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 16px; color: #fff; margin: 14px 0; font-weight: 600; }
+  .breath-box .seq span { display: inline-block; margin: 4px; padding: 8px 14px; border: 1px solid rgba(255,255,255,0.3); border-radius: 2px; }
+
+  /* STOP GRID */
+  .stop-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 22px 0; }
+  .stop-grid .step { background: var(--bg-2); padding: 22px 20px; border-radius: 4px; border-top: 3px solid var(--red); }
+  .stop-grid .step .letter { font-family: "SF Mono", Menlo, Consolas, monospace; color: var(--red); font-size: 28px; font-weight: 800; letter-spacing: 0.05em; line-height: 1; }
+  .stop-grid .step .word { font-weight: 700; margin: 8px 0 4px; font-size: 15px; }
+  .stop-grid .step .desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* MODULES */
+  .module-list { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
+  .module {
+    background: var(--bg-2); padding: 24px 28px; border-radius: 4px;
+    border-left: 3px solid var(--line); transition: border-color 0.2s;
+  }
+  .module:hover { border-left-color: var(--red); }
+  .module .head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 4px; }
+  .module .ref { font-family: "SF Mono", Menlo, Consolas, monospace; color: var(--red); font-size: 13px; font-weight: 700; flex-shrink: 0; letter-spacing: 0.05em; }
+  .module .title { font-weight: 700; font-size: 17px; }
+  .module .obj { font-style: italic; color: var(--muted); font-size: 14px; margin: 6px 0 14px; }
+  .module ul { margin-left: 20px; color: var(--fg); font-size: 15px; line-height: 1.65; }
+  .module ul li { margin-bottom: 8px; }
+  .module ul li b { color: var(--fg); font-weight: 700; }
+  .pole-tag {
+    display: inline-block; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 5px 12px; border: 1px solid var(--fg); margin-bottom: 18px; margin-top: 36px;
+    font-weight: 700; color: var(--fg); background: transparent;
+  }
+  .pole-tag.urgence, .pole-tag.autonomie, .pole-tag.risques { background: transparent; color: var(--fg); }
+
+  /* KIT */
+  .kit-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 22px 0; }
+  .kit-item { background: var(--bg-2); padding: 16px 18px; border-radius: 3px; font-size: 14px; line-height: 1.5; }
+  .kit-item strong { color: var(--red); display: block; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 4px; font-weight: 700; }
+
+  /* CASCADE */
+  .cascade-box {
+    background: var(--fg); color: #fff; padding: 44px 32px;
+    text-align: center; margin: 28px 0;
+  }
+  .cascade-box .big { font-size: 84px; font-weight: 900; color: var(--red); line-height: 1; font-family: "SF Mono", Menlo, Consolas, monospace; margin: 14px 0; }
+  .cascade-box .label { color: rgba(255,255,255,0.6); letter-spacing: 0.18em; text-transform: uppercase; font-size: 11px; margin-bottom: 10px; font-weight: 600; }
+  .cascade-box p { max-width: 540px; margin: 16px auto 0; font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.6; }
+  .cascade-box p b { color: #fff; }
+
+  /* DISCLAIMER */
+  .disclaimer {
+    background: var(--bg-2); border-left: 3px solid var(--red);
+    padding: 22px 26px; margin: 28px 0; font-size: 14px; line-height: 1.6;
+  }
+  .disclaimer strong { color: var(--red); }
+
+  /* CLEAN LISTS */
+  ul.clean { list-style: none; margin: 16px 0; }
+  ul.clean li { padding: 10px 0 10px 24px; position: relative; border-bottom: 1px solid var(--line); line-height: 1.5; }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before { content: ""; width: 6px; height: 6px; background: var(--red); position: absolute; left: 0; top: 18px; }
+
+  /* GLOSSARY */
+  .glossary dt { font-weight: 700; color: var(--fg); font-size: 16px; margin-top: 18px; }
+  .glossary dd { color: var(--muted); font-size: 15px; margin-bottom: 8px; line-height: 1.6; }
+
+  /* FOOTER */
+  footer { padding: 70px 0 80px; text-align: center; color: var(--muted); font-size: 13px; }
+  footer .dedic { color: var(--fg); font-size: 19px; margin-bottom: 36px; font-style: italic; line-height: 1.5; }
+  footer .dedic .red { color: var(--red); }
+  footer .meta { margin-top: 20px; line-height: 1.8; font-size: 12px; }
+
+  /* CONTEXT INTRO */
+  .context-quote {
+    background: var(--bg-2); border-left: 3px solid var(--fg);
+    padding: 22px 28px; margin: 28px 0; font-style: italic; color: var(--fg);
+    font-size: 16px; line-height: 1.6;
+  }
+  .context-quote .source { display: block; font-style: normal; color: var(--muted); font-size: 13px; margin-top: 12px; letter-spacing: 0.02em; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    h1 { font-size: 42px; }
+    h2 { font-size: 26px; }
+    .stop-grid { grid-template-columns: 1fr; }
+    .kit-grid { grid-template-columns: 1fr; }
+    .cascade-box .big { font-size: 64px; }
+    .nav-wrap { padding: 12px 18px; }
+    .nav-links { gap: 16px; }
+    .nav-links a { font-size: 12px; }
+    .nav-brand { font-size: 14px; }
+    header.hero { padding: 60px 0 50px; }
+    section { padding: 50px 0 35px; }
+    .wrap { padding: 0 18px; }
+  }
+  @media print {
+    .topnav { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .wrap { max-width: 100%; padding: 0 10mm; }
+    .breath-box, .cascade-box { background: #f5f5f5 !important; color: #000 !important; border: 1px solid #ccc; }
+    .breath-box .seq, .breath-box .seq span { color: #000 !important; border-color: #999 !important; }
+    .cascade-box p, .cascade-box .label { color: #555 !important; }
+    .cascade-box .big { color: #c8102e !important; }
+    section, header.hero, .resources { border-bottom: 1px solid #ccc; padding: 20px 0; }
+    h1, h2, h3, h4 { color: #000; }
+    a { color: #000; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============= NAV ============= -->
+<nav class="topnav">
+  <div class="nav-wrap">
+    <a href="#top" class="nav-brand">A.U.S.C.A.R<span class="red">.</span></a>
+    <div class="nav-links">
+      <a href="#regles">Règles</a>
+      <a href="#maillon-zero">Maillon Zéro</a>
+      <a href="#modules">Modules</a>
+      <a href="#cascade">Cascade</a>
+      <button onclick="window.print()">Imprimer</button>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+<!-- ============= HERO ============= -->
+<header class="hero">
+  <div class="badge">Édition 2026 · V1</div>
+  <h1>A.U.S.C.A.R<span class="dot">.</span></h1>
+  <p class="subtitle">Académie d'Utilité Sociale pour la Connaissance, l'Autonomie et la Résilience</p>
+  <p class="promise">Savoir agir en 72 heures</p>
+  <blockquote class="tagline">
+    « La résilience n'est pas une survie solitaire, c'est une solidarité organisée. Face à l'imprévu, le savoir est notre seul bouclier commun. »
+  </blockquote>
+</header>
+
+<!-- ============= RESSOURCES ============= -->
+<section id="ressources" class="resources">
+  <div class="res-grid">
+    <a href="#maillon-zero" class="res-card">
+      <div class="res-icon">⚡</div>
+      <div class="res-title">Maillon Zéro</div>
+      <div class="res-desc">Le déblocage en 15 secondes. Respiration, S.T.O.P., règles vitales — l'essentiel à coller sur le frigo.</div>
+      <div class="res-cta">Lire ↓</div>
+    </a>
+    <a href="#modules" class="res-card">
+      <div class="res-icon">🎯</div>
+      <div class="res-title">Les 9 modules</div>
+      <div class="res-desc">Santé, ressources, énergie, comportement, orientation, réflexes, nucléaire, biologique, naturel.</div>
+      <div class="res-cta">Voir les modules ↓</div>
+    </a>
+    <a href="#kit" class="res-card">
+      <div class="res-icon">🎒</div>
+      <div class="res-title">Kit 72 heures</div>
+      <div class="res-desc">La liste à préparer avant. Eau, nourriture, info, lumière, soins, doc, argent, outils.</div>
+      <div class="res-cta">Voir la liste ↓</div>
+    </a>
+  </div>
+</section>
+
+<!-- ============= POURQUOI ============= -->
+<section id="pourquoi">
+  <h2><span class="num">01</span>Pourquoi AUSCAR</h2>
+  <p class="section-intro">Notre société a délégué sa santé, sa sécurité et sa logistique à des structures centralisées. Ce confort a un prix&nbsp;: l'atrophie de nos réflexes vitaux.</p>
+  <p>Face à une crise systémique — climatique, technologique ou sanitaire — les professionnels du secours peuvent rencontrer un délai logistique pouvant atteindre 72 heures pour atteindre chaque foyer. Durant ce laps de temps, environ <b>70% des personnes sont frappées de sidération</b>.</p>
+
+  <div class="context-quote">
+    Modèle de John Leach (Survival Psychology, Macmillan 1994)&nbsp;: face à une catastrophe, environ 15% des personnes agissent immédiatement, 70% sont sidérées (figées, incapables de décider), 15% paniquent activement et aggravent souvent la situation.
+    <span class="source">— Source : recherches en psychologie de la survie, validées sur de nombreuses études d'incidents civils.</span>
+  </div>
+
+  <p>AUSCAR n'est pas une formation diplômante. C'est une démarche citoyenne pour transformer la panique en action lucide, par la transmission patiente de gestes simples, vérifiés, et partageables.</p>
+</section>
+
+<!-- ============= 3 RÈGLES ============= -->
+<section id="regles">
+  <h2><span class="num">02</span>Les 3 Règles d'Or</h2>
+  <p class="section-intro">Trois réflexes universels, applicables à toute situation d'urgence. Ils ne remplacent rien&nbsp;; ils donnent de l'air à ta réflexion.</p>
+
+  <div class="rule-card">
+    <strong>Règle n°1 — Alerte d'abord</strong>
+    Appelle en premier&nbsp;: <b>15</b> (SAMU), <b>18</b> (pompiers) ou <b>112</b> (numéro européen unique). Briser l'isolement est vital. Si plusieurs personnes sont présentes, désigne quelqu'un explicitement&nbsp;: «&nbsp;Toi, tu appelles le 112.&nbsp;» La diffusion de responsabilité fige les groupes&nbsp;; le pointage la dissout.
+  </div>
+
+  <div class="rule-card">
+    <strong>Règle n°2 — Confinement actif</strong>
+    Face à un danger extérieur (fumée, nuage toxique, explosion, tempête extrême), <b>reste à l'intérieur</b>. Le bâtiment, surtout en béton, protège bien mieux que la fuite désorganisée à l'air libre. Coupe le gaz et l'électricité si tu le peux sans risque. Calfeutre. Écoute la radio (France Info 105.5 FM).
+  </div>
+
+  <div class="rule-card">
+    <strong>Règle n°3 — Bascule physiologique</strong>
+    Le stress extrême court-circuite la réflexion (effet tunnel, cortex préfrontal mis en veille). <b>Respire avant d'agir.</b> La respiration carrée réactive la lucidité en quelques secondes.
+  </div>
+</section>
+
+<!-- ============= MAILLON ZÉRO ============= -->
+<section id="maillon-zero">
+  <h2><span class="num">03</span>Le Maillon Zéro · Déblocage immédiat</h2>
+  <p class="section-intro">C'est le tout premier geste, avant tout. Avant le téléphone, avant le secours, avant la fuite. Tu es la première seconde de la chaîne&nbsp;: si tu te débloques, tu débloques les autres.</p>
+
+  <h4>Étape 1 — La respiration carrée</h4>
+  <div class="breath-box">
+    <div style="font-size:11px; color:rgba(255,255,255,0.6); letter-spacing:0.18em; text-transform:uppercase; margin-bottom:14px; font-weight:600;">15 secondes</div>
+    <div class="seq">
+      <span>Inspire 4s</span>
+      <span>Bloque 4s</span>
+      <span>Expire 4s</span>
+      <span>Bloque 4s</span>
+    </div>
+    <div style="font-size:13px; color:rgba(255,255,255,0.7); margin-top:14px;">À répéter <b style="color:#fff;">3 fois</b>. Quinze secondes pour reprendre le commandement de soi.</div>
+  </div>
+
+  <h4>Étape 2 — La méthode S.T.O.P.</h4>
+  <p>Quand la respiration carrée a fait son travail, applique S.T.O.P. avant de bouger. Cinq secondes. Pas plus, pas moins.</p>
+  <div class="stop-grid">
+    <div class="step">
+      <div class="letter">S</div>
+      <div class="word">Stoppe</div>
+      <div class="desc">Immobilisation totale (5 secondes). N'ajoute pas de chaos.</div>
+    </div>
+    <div class="step">
+      <div class="letter">T</div>
+      <div class="word">Tour d'horizon</div>
+      <div class="desc">D'où vient le danger&nbsp;? Où est l'issue&nbsp;? Qui est avec moi&nbsp;?</div>
+    </div>
+    <div class="step">
+      <div class="letter">O</div>
+      <div class="word">Options</div>
+      <div class="desc">Fuir, se cacher, combattre, soigner. Choisis lucidement.</div>
+    </div>
+    <div class="step">
+      <div class="letter">P</div>
+      <div class="word">Pars à l'action</div>
+      <div class="desc">Exécute. Une décision tenue vaut mieux que dix hésitations.</div>
+    </div>
+  </div>
+
+  <h4>Étape 3 — Les 3 gestes qui sauvent</h4>
+  <ul class="clean">
+    <li><b>Hémorragie</b>&nbsp;: compression forte et continue sur la plaie. Ne lâche pas. Garrot tactique uniquement si le sang gicle, posé au-dessus de la blessure, heure de pose notée.</li>
+    <li><b>Inconscient qui respire</b>&nbsp;: Position Latérale de Sécurité (PLS) — bascule sur le côté pour éviter l'étouffement.</li>
+    <li><b>Ne respire plus</b>&nbsp;: massage cardiaque — mains au centre du sternum, fort et rapide (100–120 BPM, soit le tempo de <i>Stayin' Alive</i>), sans s'arrêter, jusqu'à l'arrivée des secours.</li>
+  </ul>
+</section>
+
+<!-- ============= MODULES ============= -->
+<section id="modules">
+  <h2><span class="num">04</span>Les 9 Modules de connaissance</h2>
+  <p class="section-intro">Le curriculum AUSCAR se structure en trois pôles. Chaque module est présenté ici dans sa version « apprenant »&nbsp;: l'essentiel à savoir et à savoir faire.</p>
+
+  <span class="pole-tag urgence">Pôle 1 · Urgence Vitale</span>
+  <div class="module-list">
+    <div class="module">
+      <div class="head"><span class="ref">A</span><span class="title">Santé &amp; Secours</span></div>
+      <div class="obj">Préserver la vie dans les premières minutes décisives.</div>
+      <ul>
+        <li><b>Massage cardiaque externe</b>&nbsp;: mains croisées au centre du sternum, pression forte (5–6 cm), rythme rapide (100–120 BPM). Sans s'arrêter.</li>
+        <li><b>Hémorragie</b>&nbsp;: compression directe forte et continue. Garrot uniquement en cas de jet artériel sur un membre, heure de pose notée.</li>
+        <li><b>PLS</b>&nbsp;: pour personne inconsciente qui respire, basculer sur le côté pour éviter l'étouffement.</li>
+        <li><b>Chaîne de survie</b>&nbsp;: Reconnaître l'arrêt ▸ Alerter ▸ Masser ▸ Défibriller ▸ Soigner. Chaque maillon double les chances de survie.</li>
+        <li><b>Étouffement adulte</b>&nbsp;: manœuvre de Heimlich — 5 claques dorsales puis 5 compressions abdominales, en alternance jusqu'à dégagement.</li>
+        <li><b>Brûlure thermique</b>&nbsp;: règle des 15 — 15 minutes d'eau froide à environ 15°C, avant tout pansement stérile.</li>
+        <li><b>DAE (défibrillateur)</b>&nbsp;: tout citoyen peut l'utiliser. Suivre les instructions vocales. Localiser celui de ton quartier dès maintenant.</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="head"><span class="ref">B</span><span class="title">Ressources essentielles</span></div>
+      <div class="obj">Sécuriser l'eau et la nourriture en cas de rupture.</div>
+      <ul>
+        <li><b>Eau</b>&nbsp;: 2,5 à 3 L par jour par personne. Stock minimum&nbsp;: 9 L pour 2 personnes sur 3 jours.</li>
+        <li><b>Potabilisation</b>&nbsp;: ébullition 1 minute, pastilles de purification, ou eau de Javel à 2,6% (2 gouttes/litre, attendre 30 minutes).</li>
+        <li><b>Nourriture</b>&nbsp;: conserves, riz, pâtes, fruits secs, ≈2000 kcal/jour, principe FIFO.</li>
+        <li><b>Filtration mécanique</b>&nbsp;: filtre maison sable + charbon actif + tissu (du plus grossier au plus fin). Réduit turbidité avant ébullition.</li>
+        <li><b>Conservation sans énergie</b>&nbsp;: salaison, fumage, déshydratation au soleil. Méthodes ancestrales valables ; le sel ne périme pas.</li>
+        <li><b>Stock 30 jours</b>&nbsp;: multiplier le 72h par 10. À adapter selon profil (zone rurale, foyer avec enfants, dépendance médicale).</li>
+        <li><b>Cuisson alternative</b>&nbsp;: réchaud à gaz cartouche (toujours en extérieur), four solaire artisanal, bois sec.</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="head"><span class="ref">C</span><span class="title">Énergie &amp; chaleur</span></div>
+      <div class="obj">Maintenir les fonctions vitales sans courant.</div>
+      <ul>
+        <li><b>Priorités</b>&nbsp;: lumière (frontale LED), communication (radio à piles), chaleur corporelle (couches de vêtements).</li>
+        <li><b>Règle CO absolue</b>&nbsp;: tout appareil à combustion (groupe, chauffage à pétrole, BBQ) <u>dehors uniquement</u>. Le monoxyde de carbone tue silencieusement.</li>
+        <li><b>Détecteur CO</b>&nbsp;: obligatoire dès qu'on a un chauffage non électrique. Ça coûte ≈25 € en grande surface bricolage, ça sauve une vie.</li>
+        <li><b>Isolation passive</b>&nbsp;: empiler les couches (couvertures, journaux dans les vêtements). L'air immobile entre couches isole.</li>
+        <li><b>Power bank</b>&nbsp;: ≥ 20 000 mAh recharge un téléphone 4 à 5 fois. Garde-en une chargée en permanence dans le sac 72h.</li>
+        <li><b>Bougies longue durée</b>&nbsp;: une bougie type chauffe-plat brûle ~4h. Stock 24 unités par foyer (économique, multifonction).</li>
+      </ul>
+    </div>
+  </div>
+
+  <span class="pole-tag autonomie">Pôle 2 · Autonomie Opérationnelle</span>
+  <div class="module-list">
+    <div class="module">
+      <div class="head"><span class="ref">D</span><span class="title">Comportement &amp; stress</span></div>
+      <div class="obj">Comprendre la panique pour la déjouer.</div>
+      <ul>
+        <li><b>Modèle John Leach</b>&nbsp;: 15% agissent, 70% se figent, 15% paniquent.</li>
+        <li><b>Outils</b>&nbsp;: respiration carrée (15s), S.T.O.P. (5s), pointage explicite (« Toi, tu fais X »).</li>
+        <li><b>Leadership d'urgence</b>&nbsp;: voix basse et lente, ordres courts, aucune négociation pendant la phase critique.</li>
+        <li><b>Système binôme</b>&nbsp;: un partenaire vérifie tes décisions critiques. Réduit massivement les erreurs de panique.</li>
+        <li><b>Repérer la panique chez l'autre</b>&nbsp;: agitation, regard fixe, respiration rapide et superficielle, parole décousue. Lui parler bas, lent, le toucher avec calme.</li>
+        <li><b>Enfants en crise</b>&nbsp;: ils imitent l'adulte de référence. Garde ton calme visible — ils suivront. Surinformer un enfant est moins dangereux que le maintenir dans l'angoisse vague.</li>
+        <li><b>Cycle OODA</b>&nbsp;: Observer ▸ Orienter ▸ Décider ▸ Agir. Doctrine militaire applicable à l'urgence civile. Tournes ce cycle vite, et ré-itère.</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="head"><span class="ref">E</span><span class="title">Orientation</span></div>
+      <div class="obj">Se déplacer utilement sans GPS ni téléphone.</div>
+      <ul>
+        <li><b>Étoile Polaire</b>&nbsp;: prolonger 5× la distance entre les deux étoiles arrière de la Grande Ourse.</li>
+        <li><b>Repères de jour</b>&nbsp;: lever est, coucher ouest, culmination sud (hémisphère nord).</li>
+        <li><b>Cartographie locale</b>&nbsp;: connaître à l'avance points d'eau, hôpitaux, pharmacies, abris collectifs.</li>
+        <li><b>Cap au soleil avec montre analogique</b>&nbsp;: pointer l'aiguille des heures vers le soleil ; le sud est à mi-chemin entre cette aiguille et le 12h.</li>
+        <li><b>Marquage de piste</b>&nbsp;: pierres empilées, branches cassées, traces orientées dans le sens du retour. Précieux quand tu pars explorer.</li>
+        <li><b>Triangulation visuelle</b>&nbsp;: deux repères fixes connus (clocher, antenne) suffisent à estimer ta position sur une carte papier.</li>
+        <li><b>Boussole de fortune</b>&nbsp;: aiguille frottée sur tissu de laine puis posée sur une feuille flottante = pointe nord magnétique.</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="head"><span class="ref">F</span><span class="title">Réflexes de sécurité</span></div>
+      <div class="obj">Reconnaître les signaux d'alerte officiels.</div>
+      <ul>
+        <li><b>Sirène RNA</b>&nbsp;: 3 cycles de 41 secondes séparés par 5 secondes de silence = ALERTE IMMÉDIATE. Fin d'alerte&nbsp;: son continu de 30 secondes.</li>
+        <li><b>Sac 72h</b>&nbsp;: voir section dédiée. Vérifié tous les 6 mois.</li>
+        <li><b>PPMS</b>&nbsp;: connaître celui de son lieu de travail et de l'établissement de ses enfants.</li>
+        <li><b>Sirène d'essai</b>&nbsp;: 1er mercredi du mois à midi, 1 seul cycle de 1m41s = test, pas d'alerte. Apprends à différencier (le vrai a 3 cycles).</li>
+        <li><b>FR-Alert</b>&nbsp;: alerte officielle géolocalisée envoyée sur les smartphones. Active par défaut, gratuite, ne nécessite aucune appli supplémentaire.</li>
+        <li><b>Plan familial de regroupement</b>&nbsp;: un point fixe connu de tous (école, parc, voisin), hors zone à risque. Si la communication tombe, chacun s'y dirige.</li>
+        <li><b>Lampe à dynamo</b>&nbsp;: indépendance totale des piles. Combine souvent radio FM + lampe + chargeur USB. Investissement ~25 €.</li>
+      </ul>
+    </div>
+  </div>
+
+  <span class="pole-tag risques">Pôle 3 · Risques Majeurs</span>
+  <div class="module-list">
+    <div class="module">
+      <div class="head"><span class="ref">G</span><span class="title">Risque nucléaire</span></div>
+      <div class="obj">Comprendre, anticiper, suivre les consignes.</div>
+      <ul>
+        <li><b>Trois rayonnements</b>&nbsp;: alpha (papier suffit), bêta (aluminium), gamma (plomb / béton épais).</li>
+        <li><b>Règle 7/10</b>&nbsp;: pour chaque facteur 7 de temps, l'intensité résiduelle est divisée par 10. Après 7 h&nbsp;: ÷10. Après 49 h&nbsp;: ÷100.</li>
+        <li><b>Iode stable</b>&nbsp;: distribution organisée par les autorités. Prise <u>uniquement sur consigne explicite</u>. Ne jamais auto-doser.</li>
+        <li><b>Eau du robinet</b>&nbsp;: potable au moins 24h après un incident (canalisations sous pression). Au-delà, suivre les consignes officielles.</li>
+        <li><b>Décontamination basique</b>&nbsp;: retirer les vêtements extérieurs (≈90% des particules), ranger en sac plastique fermé, douche à grande eau, savon doux.</li>
+        <li><b>Confinement</b>&nbsp;: minimum 24h en intérieur, ventilation coupée, fenêtres calfeutrées au scotch. Pièce sans fenêtre = idéal.</li>
+        <li><b>Distance / temps / écran</b>&nbsp;: les trois principes universels de la radioprotection. Plus loin, moins longtemps, plus de matière entre toi et la source.</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="head"><span class="ref">H</span><span class="title">Risque biologique</span></div>
+      <div class="obj">Briser les chaînes de transmission.</div>
+      <ul>
+        <li><b>R0</b>&nbsp;: nombre moyen de personnes contaminées par un cas. L'épidémie s'éteint quand R0 &lt; 1.</li>
+        <li><b>Mesures</b>&nbsp;: hygiène stricte (eau et savon, 30s), distance physique, masques, isolement, séparation circuits propres/sales.</li>
+        <li><b>Hygiène respiratoire</b>&nbsp;: tousser et éternuer dans le coude (jamais dans la main). Limite la propagation par contact direct.</li>
+        <li><b>Quarantaine domestique</b>&nbsp;: isoler la personne contagieuse en pièce dédiée et ventilée. Déchets en double sac, repas servi devant la porte.</li>
+        <li><b>Stock recommandé</b>&nbsp;: masques chirurgicaux pour épidémies courantes, masques FFP2 pour bio sévère / poussières fines. Conservation 5 ans en emballage scellé.</li>
+        <li><b>Précaution alimentaire</b>&nbsp;: cuisson complète, eau bouillie, pas de cru non pelé en zone à risque. La chaîne du froid est la première à rompre.</li>
+      </ul>
+    </div>
+    <div class="module">
+      <div class="head"><span class="ref">I</span><span class="title">Risques naturels</span></div>
+      <div class="obj">Appliquer le bon protocole, vite.</div>
+      <ul>
+        <li><b>Séisme</b>&nbsp;: <i>Drop, Cover, Hold On</i> — au sol, se couvrir la tête sous une table solide, tenir bon.</li>
+        <li><b>Tsunami</b>&nbsp;: règle 30/30 — secousse &gt; 30s près de la côte ⇒ monter à au moins 30 m d'altitude.</li>
+        <li><b>Crues éclair</b>&nbsp;: ne jamais traverser en voiture une route inondée. La voiture flotte.</li>
+        <li><b>Tempête</b>&nbsp;: rester à l'intérieur, s'éloigner des fenêtres.</li>
+        <li><b>Foudre — règle 30/30</b>&nbsp;: si l'écart éclair-tonnerre est inférieur à 30 secondes, mise à l'abri immédiate. Attendre 30 minutes après le dernier éclair avant de ressortir.</li>
+        <li><b>Feu de forêt</b>&nbsp;: en cas d'approche, le confinement maison (fenêtres fermées, gouttières dégagées) est souvent plus sûr que la fuite sur une route unique encombrée. Suivre les consignes locales.</li>
+        <li><b>Avalanche</b>&nbsp;: en montagne hivernale hors-piste, équipement DVA + pelle + sonde obligatoire. Sans cet équipement, ne pas s'aventurer.</li>
+        <li><b>Inondation</b>&nbsp;: monter en hauteur, pas en sous-sol. 30 cm d'eau emporte une voiture. Ne jamais traverser à pied non plus.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============= KIT 72H ============= -->
+<section id="kit">
+  <h2><span class="num">05</span>Le Kit 72 heures</h2>
+  <p class="section-intro">À préparer <u>avant</u>. Un sac, un placard, accessible, vérifié tous les 6 mois. Ce qui suit couvre 2 personnes pendant 3 jours.</p>
+  <div class="kit-grid">
+    <div class="kit-item"><strong>Eau</strong>9 L mini (3 L × 3 jours).</div>
+    <div class="kit-item"><strong>Nourriture</strong>Conserves, barres, fruits secs (≈2000 kcal/j).</div>
+    <div class="kit-item"><strong>Information</strong>Radio à piles ou manivelle (FM).</div>
+    <div class="kit-item"><strong>Lumière</strong>Lampe frontale LED + piles neuves.</div>
+    <div class="kit-item"><strong>Premiers secours</strong>Trousse, garrot tourniquet, désinfectant.</div>
+    <div class="kit-item"><strong>Couverture</strong>Couverture de survie, vêtements chauds.</div>
+    <div class="kit-item"><strong>Santé</strong>Médicaments 7 jours + copies d'ordonnances.</div>
+    <div class="kit-item"><strong>Documents</strong>CNI, assurance, carnet de santé (pochette étanche).</div>
+    <div class="kit-item"><strong>Argent</strong>Espèces en petites coupures.</div>
+    <div class="kit-item"><strong>Outils</strong>Couteau multifonction, sifflet, briquet, scotch.</div>
+  </div>
+</section>
+
+<!-- ============= CASCADE ============= -->
+<section id="cascade">
+  <h2><span class="num">06</span>Le Pacte des 12 · La Cascade</h2>
+  <p class="section-intro">AUSCAR ne survit pas par sa structure&nbsp;: il survit par sa transmission. C'est sa seule règle d'expansion.</p>
+  <div class="cascade-box">
+    <div class="label">Engagement moral</div>
+    <div class="big">×12</div>
+    <p>Celui qui reçoit, transmet. Chaque personne qui s'approprie ce savoir s'engage à le partager à <b>douze</b> personnes de son entourage. C'est par ce maillage viral, et seulement par lui, que la résilience réelle se forge.</p>
+  </div>
+  <p>Pas de fichier centralisé, pas de carte de membre, pas d'inscription. Tu reçois, tu apprends, tu transmets. C'est tout. C'est suffisant.</p>
+</section>
+
+<!-- ============= GLOSSAIRE ============= -->
+<section id="glossaire" class="glossary">
+  <h2><span class="num">07</span>Glossaire de la Résilience</h2>
+  <p class="section-intro">Les termes qui reviennent. Pas de jargon&nbsp;: ce qu'il faut savoir, dans la langue de tout le monde.</p>
+  <dl>
+    <dt>R0 (taux de reproduction)</dt>
+    <dd>Nombre moyen de personnes qu'un cas contagieux contamine. Une épidémie s'éteint quand R0 passe sous 1.</dd>
+
+    <dt>Règle 7/10 (nucléaire)</dt>
+    <dd>Pour chaque facteur 7 de temps écoulé, l'intensité du rayonnement est divisée par 10.</dd>
+
+    <dt>Règle 30/30 (tsunami)</dt>
+    <dd>Si un séisme dure plus de 30 secondes près de la côte, monter immédiatement à au moins 30 mètres d'altitude.</dd>
+
+    <dt>Sidération</dt>
+    <dd>État de figement provoqué par un choc extrême. Le cortex préfrontal est court-circuité. La respiration carrée le rallume.</dd>
+
+    <dt>PPMS</dt>
+    <dd>Plan Particulier de Mise en Sûreté&nbsp;: protocole institutionnel des établissements scolaires et entreprises face à un risque majeur.</dd>
+
+    <dt>Effet tunnel</dt>
+    <dd>Rétrécissement perceptif sous stress&nbsp;: on ne voit plus que la menace, pas les options. Le rituel S.T.O.P. élargit le champ.</dd>
+
+    <dt>FIFO</dt>
+    <dd>« First In, First Out » — premier entré, premier sorti. Principe de rotation du stock alimentaire pour éviter la péremption.</dd>
+
+    <dt>Drop, Cover, Hold On</dt>
+    <dd>Protocole sismique&nbsp;: au sol, se couvrir la tête, tenir bon jusqu'à la fin des secousses.</dd>
+  </dl>
+</section>
+
+<!-- ============= LÉGAL ============= -->
+<section id="legal">
+  <h2><span class="num">08</span>Mentions, disclaimer et licence</h2>
+
+  <div class="disclaimer">
+    <strong>AVERTISSEMENT.</strong> AUSCAR est une démarche citoyenne de sensibilisation à la résilience. Ce n'est <u>ni</u> une formation diplômante, <u>ni</u> un avis médical, <u>ni</u> un substitut aux services de secours professionnels. <b>En cas d'urgence vitale, le premier réflexe reste l'appel au 15, 18 ou 112.</b> Les gestes décrits ici visent à réduire la sidération et à augmenter la probabilité d'agir utilement&nbsp;; ils ne garantissent aucun résultat.
+  </div>
+
+  <p style="font-size:14px; color:var(--muted);">Pour les contenus de premiers secours formels, la formation officielle reste le PSC1 (Prévention et Secours Civiques de niveau 1), dispensée par les organismes agréés (Croix-Rouge, protection civile, sapeurs-pompiers, etc.).</p>
+
+  <h3 style="margin-top:30px;">Licence</h3>
+  <p>Ce document est offert sous licence <b>Creative Commons CC BY-SA 4.0</b>. Vous êtes libre de le reproduire, modifier, traduire, redistribuer — y compris à des fins commerciales — à condition de citer la source («&nbsp;d'après AUSCAR&nbsp;») et de partager toute version dérivée sous les mêmes conditions.</p>
+
+  <h3>Sources et références</h3>
+  <ul class="clean">
+    <li>European Resuscitation Council Guidelines 2021 (RCP, chaîne de survie)</li>
+    <li>gouvernement.fr — risques majeurs, Plan ORSEC, Réseau National d'Alerte</li>
+    <li>Organisation Mondiale de la Santé — préparation aux urgences sanitaires</li>
+    <li>John Leach, <i>Survival Psychology</i> (Macmillan, 1994) — modèle 15-70-15</li>
+    <li>Doctrine MARCHE (Tactical Combat Casualty Care, adaptée à l'usage civil)</li>
+    <li>Documentation INRS — sécurité monoxyde de carbone</li>
+  </ul>
+
+  <h3>Données personnelles</h3>
+  <p style="font-size:14px;">AUSCAR ne collecte aucune donnée personnelle. Pas de fichier, pas de cookie, pas d'analytics. La cascade des 12 fonctionne en peer-to-peer&nbsp;: chacun transmet à son cercle, rien n'est centralisé.</p>
+</section>
+
+<!-- ============= FOOTER ============= -->
+<footer>
+  <p class="dedic">Par et pour la Vie. <span class="red">— Pour Oskar.</span></p>
+  <p>A.U.S.C.A.R · Édition V1 · 2026</p>
+  <p class="meta">
+    Document libre — CC BY-SA 4.0 · Sans collecte de données · Hors ligne par conception<br>
+    « Savoir agir, c'est déjà sauver. »
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
